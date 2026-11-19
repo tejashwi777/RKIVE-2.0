@@ -1,3 +1,4 @@
-# RKIVE database models package
 
-__all__ = []
+from app.models.user import User
+
+__all__ = ["User"]
