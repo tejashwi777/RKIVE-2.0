@@ -1,7 +1,7 @@
-
 from flask import Flask
 
 from app.extensions import db, migrate, login_manager, csrf
+from app.routes import main
 
 
 def create_app():
@@ -13,5 +13,7 @@ def create_app():
     migrate.init_app(app, db)
     login_manager.init_app(app)
     csrf.init_app(app)
+
+    app.register_blueprint(main)
 
     return app
