@@ -35,5 +35,6 @@ def create_app():
     app.register_blueprint(requirements)
     app.register_blueprint(test_suites)
     app.register_blueprint(test_cases)
+    app.register_blueprint(test_runs)
 
     return app
