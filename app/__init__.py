@@ -4,6 +4,7 @@ from flask import Flask
 from app.extensions import db, migrate, login_manager, csrf
 from app.routes import main
 from app.models import User
+from app.routes.auth import auth
 
 
 def create_app():
@@ -23,5 +24,6 @@ def create_app():
         return db.session.get(User, int(user_id))
 
     app.register_blueprint(main)
+    app.register_blueprint(auth)
 
     return app
