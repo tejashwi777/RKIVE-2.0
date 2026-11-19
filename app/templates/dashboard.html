@@ -1,0 +1,157 @@
+
+{% extends "base.html" %}
+
+{% block title %}Overview | RKIVE 2.0{% endblock %}
+{% block page_name %}Overview{% endblock %}
+
+{% block content %}
+
+<div class="welcome-section">
+    <div>
+        <h1>Welcome to RKIVE ✨</h1>
+        <p>Your software quality workspace. Everything in one place.</p>
+    </div>
+    <div class="date-label">QUALITY CONTROL CENTER</div>
+</div>
+
+<div class="stats-grid">
+
+    <div class="stat-card lilac">
+        <div class="stat-top">
+            <span class="stat-label">Total Projects</span>
+            <div class="stat-icon">▣</div>
+        </div>
+        <h2>08</h2>
+        <small>Projects in workspace</small>
+    </div>
+
+    <div class="stat-card pink">
+        <div class="stat-top">
+            <span class="stat-label">Test Cases</span>
+            <div class="stat-icon">☑</div>
+        </div>
+        <h2>124</h2>
+        <small>Test cases created</small>
+    </div>
+
+    <div class="stat-card blue">
+        <div class="stat-top">
+            <span class="stat-label">Passed Tests</span>
+            <div class="stat-icon">✓</div>
+        </div>
+        <h2>86</h2>
+        <small>Tests passed</small>
+    </div>
+
+    <div class="stat-card sage">
+        <div class="stat-top">
+            <span class="stat-label">Open Defects</span>
+            <div class="stat-icon">⚑</div>
+        </div>
+        <h2>12</h2>
+        <small>Defects requiring attention</small>
+    </div>
+
+</div>
+
+<div class="dashboard-grid">
+
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Testing Overview</h3>
+            <span>Sample dashboard data</span>
+        </div>
+
+        <div class="progress-row">
+            <div class="progress-info">
+                <span>Passed Tests</span>
+                <span>69%</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill sage-fill" style="width:69%"></div>
+            </div>
+        </div>
+
+        <div class="progress-row">
+            <div class="progress-info">
+                <span>Failed Tests</span>
+                <span>18%</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill pink-fill" style="width:18%"></div>
+            </div>
+        </div>
+
+        <div class="progress-row">
+            <div class="progress-info">
+                <span>Blocked Tests</span>
+                <span>8%</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill blue-fill" style="width:8%"></div>
+            </div>
+        </div>
+
+        <div class="progress-row">
+            <div class="progress-info">
+                <span>Not Run</span>
+                <span>5%</span>
+            </div>
+            <div class="progress-track">
+                <div class="progress-fill" style="width:5%"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Recent Activity</h3>
+            <span>Latest updates</span>
+        </div>
+
+        <div class="activity-list">
+
+            <div class="activity-item">
+                <div class="activity-icon">▣</div>
+                <div>
+                    <strong>Workspace created</strong>
+                    <p>RKIVE 2.0 initialized</p>
+                </div>
+                <span class="activity-time">Today</span>
+            </div>
+
+            <div class="activity-item">
+                <div class="activity-icon">☑</div>
+                <div>
+                    <strong>Testing module</strong>
+                    <p>Coming soon</p>
+                </div>
+                <span class="activity-time">—</span>
+            </div>
+
+            <div class="activity-item">
+                <div class="activity-icon">⚑</div>
+                <div>
+                    <strong>Defect tracking</strong>
+                    <p>Coming soon</p>
+                </div>
+                <span class="activity-time">—</span>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="panel">
+    <div class="panel-header">
+        <h3>Workspace Overview</h3>
+        <span>Development status</span>
+    </div>
+
+    <div class="empty-state">
+        Your real project data and QA metrics will appear here as modules are implemented.
+    </div>
+</div>
+
+{% endblock %}
