@@ -121,6 +121,7 @@ def add_cases_to_run(run_id):
                 status="Not Run"
             )
             db.session.add(execution)
+    update_run_status(run.id)
 
     db.session.commit()
 
