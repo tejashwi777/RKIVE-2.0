@@ -78,11 +78,12 @@ def edit_execution(execution_id):
             execution.executed_by = current_user.id
             execution.executed_at = datetime.utcnow()
 
-        db.session.commit()
+        update_run_status(execution.run_id)
 
-        flash("Test execution updated successfully.", "success")
+    db.session.commit()
 
-        return redirect(
+    flash("Test execution updated successfully.", "success")
+    return redirect(
             url_for(
                 "test_executions.execution_list",
                 run_id=execution.run_id
