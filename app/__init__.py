@@ -11,6 +11,7 @@ from app.models.test_suite import TestSuite
 from app.routes.test_suites import test_suites
 from app.routes.test_cases import test_cases
 from app.routes.test_runs import test_runs
+from app.routes.test_executions import test_executions
 
 
 def create_app():
@@ -36,5 +37,6 @@ def create_app():
     app.register_blueprint(test_suites)
     app.register_blueprint(test_cases)
     app.register_blueprint(test_runs)
+    app.register_blueprint(test_executions)
 
     return app
