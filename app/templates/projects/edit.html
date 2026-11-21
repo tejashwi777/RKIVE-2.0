@@ -1,0 +1,49 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>Edit Project</h1>
+        <p>Update {{ project.name }} information.</p>
+    </div>
+</div>
+
+<div class="card">
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            {{ form.name.label }}
+            {{ form.name(class="form-control") }}
+            {% for error in form.name.errors %}
+                <small>{{ error }}</small>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.project_key.label }}
+            {{ form.project_key(class="form-control") }}
+            {% for error in form.project_key.errors %}
+                <small>{{ error }}</small>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.description.label }}
+            {{ form.description(class="form-control", rows="4") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.status.label }}
+            {{ form.status(class="form-control") }}
+        </div>
+
+        {{ form.submit(class="btn btn-primary") }}
+
+        <a href="{{ url_for('projects.project_detail', project_id=project.id) }}">
+            Cancel
+        </a>
+    </form>
+</div>
+{% endblock %}
