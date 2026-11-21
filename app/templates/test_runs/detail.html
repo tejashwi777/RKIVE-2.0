@@ -1,0 +1,35 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>{{ run.name }}</h1>
+        <p>{{ run.run_key }}</p>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Test Run Details</h3>
+
+    <p><strong>Run Key:</strong> {{ run.run_key }}</p>
+    <p><strong>Name:</strong> {{ run.name }}</p>
+    <p><strong>Description:</strong> {{ run.description or "No description" }}</p>
+    <p><strong>Test Suite:</strong> {{ run.suite.name }}</p>
+    <p><strong>Status:</strong> {{ run.status }}</p>
+    <p><strong>Created By:</strong> {{ run.creator.username }}</p>
+    <p><strong>Created At:</strong> {{ run.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+</div>
+
+<div style="margin-top: 20px;">
+    <a href="{{ url_for('test_executions.execution_list', run_id=run.id) }}"
+       class="btn btn-primary">
+        Execute Tests
+    </a>
+
+    <a href="{{ url_for('test_runs.run_list') }}"
+       class="btn btn-secondary">
+        Back to Test Runs
+    </a>
+</div>
+{% endblock %}
