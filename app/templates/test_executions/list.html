@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>Test Execution</h1>
+        <p>{{ run.run_key }} — {{ run.name }}</p>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Execution Details</h3>
+    <p><strong>Test Suite:</strong> {{ run.suite.name }}</p>
+    <p><strong>Status:</strong> {{ run.status }}</p>
+</div>
+
+<form method="POST"
+      action="{{ url_for('test_executions.add_cases_to_run', run_id=run.id) }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <button type="submit" class="btn btn-primary">
+        + Add Test Cases to Run
+    </button>
+</form>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Test Case</th>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Executed By</th>
+                <th>Executed At</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for execution in executions %}
+            <tr>
+                <td>{{ execution.test_case.case_key }}</td>
+                <td>{{ execution.test_case.title }}</td>
+                <td>{{ execution.status }}</td>
+                <td>
+                    {{ execution.tester.username if execution.tester else "-" }}
+                </td>
+                <td>
+                    {{ execution.executed_at.strftime('%Y-%m-%d %H:%M')
+                       if execution.executed_at else "-" }}
+                </td>
+                <td>
+                    <a href="{{ url_for('test_executions.edit_execution',
+                                       execution_id=execution.id) }}">
+                        Execute
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6">No test cases added to this run yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<a href="{{ url_for('test_runs.run_list') }}" class="btn btn-secondary">
+    Back to Test Runs
+</a>
+{% endblock %}
