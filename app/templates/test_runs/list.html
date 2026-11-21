@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>Test Runs</h1>
+        <p>Manage and track your test execution runs.</p>
+    </div>
+
+    <a href="{{ url_for('test_runs.create_run') }}" class="btn btn-primary">
+        + Create Test Run
+    </a>
+</div>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Run Key</th>
+                <th>Name</th>
+                <th>Test Suite</th>
+                <th>Status</th>
+                <th>Created By</th>
+                <th>Created At</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for run in runs %}
+            <tr>
+                <td>{{ run.run_key }}</td>
+                <td>{{ run.name }}</td>
+                <td>{{ run.suite.name }}</td>
+                <td>{{ run.status }}</td>
+                <td>{{ run.creator.username }}</td>
+                <td>{{ run.created_at.strftime('%Y-%m-%d') }}</td>
+                <td>
+                    <a href="{{ url_for('test_runs.run_detail', run_id=run.id) }}">
+                        View
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="7">No test runs created yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
