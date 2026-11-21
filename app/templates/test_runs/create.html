@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>Create Test Run</h1>
+        <p>Create a new test execution run.</p>
+    </div>
+</div>
+
+<div class="form-container">
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            {{ form.run_key.label }}
+            {{ form.run_key(class="form-control", placeholder="Example: RUN-001") }}
+            {% for error in form.run_key.errors %}
+                <small class="text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.name.label }}
+            {{ form.name(class="form-control", placeholder="Example: Login Regression Testing") }}
+            {% for error in form.name.errors %}
+                <small class="text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            {{ form.description.label }}
+            {{ form.description(class="form-control", rows="4") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.suite_id.label }}
+            {{ form.suite_id(class="form-control") }}
+            {% for error in form.suite_id.errors %}
+                <small class="text-danger">{{ error }}</small>
+            {% endfor %}
+        </div>
+
+        {{ form.submit(class="btn btn-primary") }}
+
+        <a href="{{ url_for('test_runs.run_list') }}" class="btn btn-secondary">
+            Cancel
+        </a>
+    </form>
+</div>
+{% endblock %}
