@@ -1,0 +1,67 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>Test Cases</h1>
+        <p>Create, organize and manage test cases.</p>
+    </div>
+
+    <a href="{{ url_for('test_cases.create_case') }}" class="btn btn-primary">
+        + Add Test Case
+    </a>
+</div>
+
+<div class="card">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Test Case ID</th>
+                <th>Title</th>
+                <th>Test Suite</th>
+                <th>Requirement</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for case in cases %}
+            <tr>
+                <td>{{ case.case_key }}</td>
+                <td>{{ case.title }}</td>
+                <td>{{ case.suite.name }}</td>
+                <td>
+                    {{ case.requirement.requirement_key if case.requirement else "Not linked" }}
+                </td>
+                <td>{{ case.priority }}</td>
+                <td>{{ case.status }}</td>
+                <td>
+                    <a href="{{ url_for('test_cases.edit_case', case_id=case.id) }}">
+                        Edit
+                    </a>
+
+                    <form method="POST"
+                          action="{{ url_for('test_cases.delete_case', case_id=case.id) }}"
+                          style="display:inline;">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                        <button type="submit"
+                                onclick="return confirm('Delete this test case?')">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+
+            {% else %}
+            <tr>
+                <td colspan="7">No test cases created yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
