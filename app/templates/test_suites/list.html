@@ -1,0 +1,62 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>Test Suites</h1>
+        <p>Organize test cases into manageable test suites.</p>
+    </div>
+
+    <a href="{{ url_for('test_suites.create_suite') }}" class="btn btn-primary">
+        + Add Test Suite
+    </a>
+</div>
+
+<div class="card">
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>Suite ID</th>
+                <th>Suite Name</th>
+                <th>Project</th>
+                <th>Created By</th>
+                <th>Created At</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for suite in suites %}
+            <tr>
+                <td>{{ suite.suite_key }}</td>
+                <td>{{ suite.name }}</td>
+                <td>{{ suite.project.name }}</td>
+                <td>{{ suite.creator.username }}</td>
+                <td>{{ suite.created_at.strftime('%Y-%m-%d') }}</td>
+                <td>
+                    <a href="{{ url_for('test_suites.edit_suite', suite_id=suite.id) }}">
+                        Edit
+                    </a>
+
+                    <form method="POST"
+                          action="{{ url_for('test_suites.delete_suite', suite_id=suite.id) }}"
+                          style="display:inline;">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit"
+                                onclick="return confirm('Delete this test suite?')">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+
+            {% else %}
+            <tr>
+                <td colspan="6">No test suites created yet.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
